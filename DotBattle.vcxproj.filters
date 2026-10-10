@@ -24,6 +24,9 @@
     <ClCompile Include="RaylibWrapper.h">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="Tilemap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PlayerController.h">
