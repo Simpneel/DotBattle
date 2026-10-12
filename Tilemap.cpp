@@ -1,6 +1,6 @@
 #include "Tilemap.h"
-#include "Tilemap.h"
 #include <stdexcept>
+#include <cmath>
 
 Tilemap::Tilemap(int tileWidth, int tileHeight, float scale)
     : tileset{}, tileWidth(tileWidth), tileHeight(tileHeight), tilesPerRow(0),
@@ -47,6 +47,23 @@ void Tilemap::setMap(const std::vector<int>& mapData, int width, int height) {
     mapHeight = height;
 }
 
+int Tilemap::getTileAt(int tx, int ty) const {
+    if (tx < 0 || ty < 0 || tx >= mapWidth || ty >= mapHeight) return -1;
+    return map[ty * mapWidth + tx];
+}
+
+void Tilemap::setTileAt(int tx, int ty, int tileIndex) {
+    if (tx < 0 || ty < 0 || tx >= mapWidth || ty >= mapHeight) return;
+    map[ty * mapWidth + tx] = tileIndex;
+}
+
+void Tilemap::worldToTile(float worldX, float worldY, int& outTx, int& outTy) const {
+    const float dstW = tileWidth * scale;
+    const float dstH = tileHeight * scale;
+    outTx = static_cast<int>(std::floor(worldX / dstW));
+    outTy = static_cast<int>(std::floor(worldY / dstH));
+}
+
 void Tilemap::draw(const Camera2D& camera, int screenWidth, int screenHeight) const {
     if (!loaded || map.empty()) return;
 
@@ -60,10 +77,10 @@ void Tilemap::draw(const Camera2D& camera, int screenWidth, int screenHeight) co
     const float viewBottom = viewTop + screenHeight / camera.zoom;
 
     // Convert to tile indices and clamp to map bounds
-    int minTileX = static_cast<int>(floor(viewLeft / dstW));
-    int minTileY = static_cast<int>(floor(viewTop / dstH));
-    int maxTileX = static_cast<int>(floor((viewRight) / dstW));
-    int maxTileY = static_cast<int>(floor((viewBottom) / dstH));
+    int minTileX = static_cast<int>(std::floor(viewLeft / dstW));
+    int minTileY = static_cast<int>(std::floor(viewTop / dstH));
+    int maxTileX = static_cast<int>(std::floor((viewRight) / dstW));
+    int maxTileY = static_cast<int>(std::floor((viewBottom) / dstH));
 
     if (minTileX < 0) minTileX = 0;
     if (minTileY < 0) minTileY = 0;

@@ -127,11 +127,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DotBattle.cpp" />
+    <ClCompile Include="NPCAgent.cpp" />
+    <ClCompile Include="Pathfinding.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="RaylibWrapper.h" />
     <ClCompile Include="Tilemap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="NPCAgent.h" />
+    <ClInclude Include="Pathfinding.h" />
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="Tilemap.h" />
   </ItemGroup>

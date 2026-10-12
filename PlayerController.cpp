@@ -2,10 +2,10 @@
 #include <cmath>
 
 PlayerController::PlayerController()
-    : position{ 0.0f, 0.0f }, speed(200.0f), size(16), color(BLUE) {}
+    : position{ 0.0f, 0.0f }, movespeed(200.0f), size(16), color(BLUE) {}
 
-PlayerController::PlayerController(float x, float y, float speedIn, int sizeIn)
-    : position{ x, y }, speed(speedIn), size(sizeIn), color(BLUE) {}
+PlayerController::PlayerController(float x, float y, float movespeedIn, int sizeIn)
+    : position{ x, y }, movespeed(movespeedIn), size(sizeIn), color(BLUE) {}
 
 // Use inputDir already computed by the app; avoid sqrt by simple diagonal scaling
 void PlayerController::update(const Vector2& inputDir, float deltaTime) {
@@ -19,8 +19,8 @@ void PlayerController::update(const Vector2& inputDir, float deltaTime) {
         dir.y *= diag;
     }
 
-    position.x += dir.x * speed * deltaTime;
-    position.y += dir.y * speed * deltaTime;
+    position.x += dir.x * movespeed * deltaTime;
+    position.y += dir.y * movespeed * deltaTime;
 }
 
 void PlayerController::draw() const {
@@ -36,3 +36,4 @@ void PlayerController::setPosition(float x, float y) {
 Vector2 PlayerController::getPosition() const {
     return position;
 }
+

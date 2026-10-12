@@ -11,7 +11,7 @@ int main() {
 
     // Tilemap: tiles are 8x8 in the provided tileset; scale up for visibility
     Tilemap tilemap(8, 8, 4.0f);
-    const std::string tilesetPath = "ref/tileImage.png"; // use relative path; set working dir to project or copy ref to output
+    const std::string tilesetPath = "ref/tiles1.png"; // use relative path; set working dir to project or copy ref to output
     if (!tilemap.load(tilesetPath)) {
         // If loading fails, app will still run but tiles won't draw
     }

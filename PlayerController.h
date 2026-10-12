@@ -4,7 +4,7 @@
 class PlayerController {
 private:
     Vector2 position;
-    float speed;   // pixels per second
+    float movespeed;   // pixels per second
     int size;
     Color color;
 
